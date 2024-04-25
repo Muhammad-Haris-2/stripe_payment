@@ -50,6 +50,13 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text("Payment"),
             ),
+
+            ElevatedButton(
+              onPressed: () {
+                captureAmmount();
+              },
+              child: const Text("Capture"),
+            ),
           ],
         ),
       ),
