@@ -8,7 +8,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   //Assign publishable key to flutter_stripe
-  Stripe.publishableKey = "pk_test_51P98A0DN0hTVBXb21JKwX9LjYntyOTArbbvZ6Wej3gzem1jThzWdLTSngvHvQGDHkD9wUZVuwSpfuO69oPgKHa3d0032bRTIzw";
+  Stripe.publishableKey = "pk_test_51OgiyYIjZ8B0oecyIZsQqNYSjIpxAhjnjUzTtU9tmWRSZf5fm1qo97mEIC6xPKVZ6g2yoVeQoN03bGMz0sWS0pOm008nXDiFR5";
 
   // // Initialize Stripe SDK with your publishable key
   // Stripe.init('pk_test_51P98A0DN0hTVBXb21JKwX9LjYntyOTArbbvZ6Wej3gzem1jThzWdLTSngvHvQGDHkD9wUZVuwSpfuO69oPgKHa3d0032bRTIzw');

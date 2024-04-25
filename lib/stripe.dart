@@ -14,7 +14,11 @@ Future<void> makePayment(context) async {
       'Authorization': 'Bearer ${dotenv.env['STRIPE_SECRET']}',
       'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: {'amount': '5000', 'currency': "USD", 'confirm': "false", "capture_method": "manual"},
+    body: {
+      'amount': '3000',
+      'currency': "USD",
+      'confirm': "false",
+      "capture_method": "manual"},
   );
 
   final paymentIntent = jsonDecode(response.body);
@@ -33,8 +37,27 @@ Future<void> makePayment(context) async {
 
 Future<void> captureAmmount() async {
   // Create a PaymentIntent with the total amount of $50
+  final response = await post(
+    Uri.parse('https://api.stripe.com/v1/payment_intents/pi_3P9UitIjZ8B0oecy2ZwVmpwo/capture'),
+    headers: {
+      'Authorization': 'Bearer ${dotenv.env['STRIPE_SECRET']}',
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: {
+      'amount_to_capture': '2000'},
+  );
 
-    final url = "https://api.stripe.com/v1/payment_intents/${ClientSecret.key}/capture";
+  final paymentIntent = jsonDecode(response.body);
+  await Stripe.instance.confirmPayment(
+    paymentIntentClientSecret: paymentIntent!['client_secret'],
+    data: const PaymentMethodParams.cardFromMethodId(
+      paymentMethodData: PaymentMethodDataCardFromMethod(paymentMethodId: "pm_card_visa"),
+    ), // You may need to specify a payment method
+  );
+
+
+
+  /*final url = "https://api.stripe.com/v1/payment_intents/${ClientSecret.key}/capture";
 
   log("${ClientSecret.key}");
 
@@ -51,7 +74,7 @@ Future<void> captureAmmount() async {
     // body: {'amount_to_capture': '5000', 'currency': "USD"},
   );
 
-  log(response.body);
+  log(response.body);*/
 }
 
 class ClientSecret {
